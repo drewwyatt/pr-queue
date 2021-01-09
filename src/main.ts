@@ -1,16 +1,15 @@
 import * as core from '@actions/core'
-import { wait } from './wait'
+import { TITLE, BODY, LABEL_ID, FROM_BRANCH, TARGET_BRANCH } from './inputs'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    core.debug('PR-QUEUE')
+    core.debug('listing inputs...')
+    core.debug(`TITLE: ${TITLE}`)
+    core.debug(`BODY: ${BODY}`)
+    core.debug(`LABEL_ID: ${LABEL_ID}`)
+    core.debug(`FROM_BRANCH: ${FROM_BRANCH}`)
+    core.debug(`TARGET_BRANCH: ${TARGET_BRANCH}`)
   } catch (error) {
     core.setFailed(error.message)
   }

@@ -1,11 +1,23 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: PR Queue
+description: Automate pull-requests (one at a time).
+author: Drew Wyatt <drew.j.wyatt@gmail.com>
 inputs:
-  milliseconds: # change this
+  title:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: The title of the new pull request.
+  body:
+    required: false
+    description: The contents of the pull request.
+  label-id:
+    required: true
+    description: |
+      A unique label that will be used to identify (and close) previous open pull requests created by this action.
+  from:
+    required: true
+    description: The name of the branch where changes are implemented.
+  onto:
+    required: true
+    description: The name of the branch you want the changes pulled into.
 runs:
   using: 'node12'
   main: 'dist/index.js'
